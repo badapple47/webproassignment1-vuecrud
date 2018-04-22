@@ -1,6 +1,16 @@
 <template>
   <div id="app">
     <router-view/>
+          <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#/home">
+          Directory
+        <!-- <img alt="Brand" src="..."> -->
+      </a>
+    </div>
+  </div>
+</nav>
   </div>
 </template>
 

@@ -19,37 +19,28 @@
         </div>
         <!-- /.col-lg-6 -->
       </div>
-      <!-- /.row -->
-    </div>
-    <table class="table table-stripped table-borderes">
-      <thead>
-        <tr>
-          <th class="center">First Name</th>
-          <th class="center">Last Name</th>
-          <th class="center">Email</th>
-          <th class="center">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="users in filteredUsers" v-bind:key="users._id">
-          <td class="text-left">
-            {{users.firstName}}
-          </td>
-          <td class="text-left">
-            {{users.lastName}}
-          </td>
-          <td class="text-left">
-            {{users.email}}
-          </td>
-          <td class="text-left">
-            <router-link :to="{ path: 'updateuser/' + users._id}" class="btn btn-xs btn-warning" tag="button" type="button">
+
+      
+  <div class="col-sm-6 col-md-4" v-for="users in filteredUsers" v-bind:key="users._id">
+    <div class="thumbnail">
+      <img id="profile-img" v-bind:src= users.imageUrl />
+      <div class="caption">
+        <h3>{{users.firstName}}  {{users.lastName}}</h3>
+        <p>{{users.mobileNo}}</p>
+        <p>{{users.email}}</p>
+        <p>{{users.facebook}}</p>
+    
+      </div>
+      <router-link :to="{ path: 'updateuser/' + users._id}" class="btn btn-xs btn-warning" tag="button" type="button">
               <span class="glyphicon glyphicon-pencil"></span>
             </router-link>
             <button class="btn btn-xs btn-danger" data-toggle="modal" data-target=".bd-example-modal-sm" @click="DELETE(users._id)"><span class="glyphicon glyphicon-trash"></span></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    </div>
+  </div>
+
+      <!-- /.row -->
+    </div>
+
 
     <div class="modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -71,6 +62,9 @@
         </div>
       </div>
     </div>
+
+
+
 
   </div>
 </template>
@@ -127,4 +121,21 @@ export default {
 
 <style>
 
+  .thumbnail {
+      margin-top: 40px;
+  }
+
+  #profile-img{
+    height:170px;
+    width:auto;
+    max-width:500px;
+      
+  }
+
 </style>
+
+
+
+// mame url
+
+// https://www.iphone-droid.net/wp-content/uploads/2013/09/Mamegoma-icon.png
