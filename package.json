@@ -2,7 +2,7 @@
   "name": "vue-crud",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Sirapat Siribandit <bonkungga@hotmail.com>",
+  "author": "Pathompong Chaisri <kiraboshi47@hotmail.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
