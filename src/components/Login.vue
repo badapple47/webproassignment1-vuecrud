@@ -10,12 +10,13 @@
   <div class="panel-body">
         <form>
   User name:<br>
-  <input type="text" name="username"><br>
+  <input type="text" name="username" placeholder="username" v-model="User.username"><br>
   User password:<br>
-  <input type="password" name="psw">
+  <input type="password" name="psw" placeholder="password" v-model="User.password">
 </form>
 <br>
-<router-link to="/home" id ="login-Btn" type="button" class="btn btn-primary">Primary</router-link>
+<!-- <router-link to="/home" id ="login-Btn" type="button" class="btn btn-primary" @click="addToAPI">Login</router-link> -->
+<button class="btn btn-default" @click="addToAPI" > Login </button>
 
 
   </div>
@@ -25,11 +26,39 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'home',
   data () {
     return {
-      msg: 'EGCO427'
+      msg: 'EGCO427',
+       User: {
+        username: '',
+        password: '',
+      }
+    }
+  },
+  methods: {
+    addToAPI () {
+      let newUser = {
+        username: this.User.username,
+        password: this.User.password,
+     
+      }
+      console.log(newUser)
+      axios.post('http://localhost:8082/authen', newUser)
+        .then((response) => {
+          console.log(response.data)
+          if(response.data == "Okay!"){
+            console.log("Okay let's go")
+            localStorage.setItem('Token', 'asdasdasdasd');
+           window.location.href = "http://localhost:8080/#/home"
+
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }

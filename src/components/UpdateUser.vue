@@ -77,7 +77,7 @@ export default {
       console.log(newUser)
       axios.post('http://localhost:8082/users/' + this.$route.params.userId, newUser)
         .then((response) => {
-          console.log(response)
+          console.log(response.status)
         })
         .catch((error) => {
           console.log(error)

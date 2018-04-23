@@ -55,7 +55,7 @@
             Are you sure you want to delete this item? </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <router-link to="/" class="btn btn-danger" tag="button" type="button">
+            <router-link to="/home" class="btn btn-danger" tag="button" type="button">
               <span @click="delUser(uid)">Delete</span>
             </router-link>
           </div>
@@ -106,6 +106,10 @@ export default {
     }
   },
   mounted () {
+        console.log("Mounnted")
+    if(localStorage.getItem('Token') == 0){
+      window.location.href = "http://localhost:8080/#/"
+    }
     axios.get('http://localhost:8082/users')
       .then((response) => {
         console.log(response.data)
