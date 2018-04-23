@@ -3,42 +3,46 @@
     <form>
       <div class="well">
         <h4>Update User</h4>
-         <div class="form-group" >
+        <div class="form-group" >
           <label class="pull-left">Contact ID </label>
-          <input type="email" class="form-control" placeholder="Contact ID" v-model="User.contactId">
+          <input type="text" class="form-control" placeholder="Contact ID" v-model="User.contactId">
         </div>
         <div class="form-group" >
-          <label class="pull-left">First Name </label>
+          <label class="pull-left">First Name: </label>
           <input type="text" class="form-control" placeholder="First Name" v-model="User.firstName">
         </div>
         <div class="form-group" >
-          <label class="pull-left">Last Name </label>
+          <label class="pull-left">Last Name: </label>
           <input type="text" class="form-control" placeholder="Last Name" v-model="User.lastName">
         </div>
         <div class="form-group" >
           <label class="pull-left">Mobile No </label>
-          <input type="email" class="form-control" placeholder="Mobile No" v-model="User.mobileNo">
+          <input type="text" class="form-control" placeholder="Mobile No" v-model="User.mobileNo">
         </div>
         <div class="form-group" >
-          <label class="pull-left">Email </label>
-          <input type="email" class="form-control" placeholder="Email" v-model="User.email">
+          <label class="pull-left">Email: </label>
+          <input type="text" class="form-control" placeholder="Email" v-model="User.email">
         </div>
         <div class="form-group" >
           <label class="pull-left">Facebook </label>
-          <input type="email" class="form-control" placeholder="Facebook" v-model="User.facebook">
+          <input type="text" class="form-control" placeholder="Facebook" v-model="User.facebook">
         </div>
         <div class="form-group" >
           <label class="pull-left">Image Url </label>
-          <input type="email" class="form-control" placeholder="Image Url" v-model="User.imageUrl">
+          <input type="text" class="form-control" placeholder="Image Url" v-model="User.imageUrl">
         </div>
       </div>
-      <!-- <router-link to="/" tag="button" type="submit" class="btn btn-large btn-block btn-primary full-width">
+      <button  tag="button" type="submit" class="btn btn-large btn-block btn-primary full-width" @click="updateToAPI">
+        <!-- <span @click="updateToAPI">Submit</span> -->
+        Submit
+      </button>
+      <!-- <router-link to="/home" tag="button" type="submit" class="btn btn-large btn-block btn-primary full-width">
         <span @click="updateToAPI">Submit</span>
       </router-link> -->
-      <button id ="login-Btn" type="button" class="btn btn-primary" @click="addToAPI">save</button>
-      <router-link to="/" tag="button" class="btn btn-large btn-block btn-success full-width" type="button">
+      <router-link to="/home" tag="button" class="btn btn-large btn-block btn-success full-width" type="button">
         <span>Back to User Page</span>
       </router-link>
+      <!-- <button class="btn btn-default" role="button" @click="updateToAPI">Button</button> -->
     </form>
   </div>
 
@@ -64,8 +68,9 @@ export default {
   },
   methods: {
     updateToAPI () {
+      console.log("CLICK")
       console.log(this.$route.params.userId)
-      let newUser = {
+        let newUser = {
        firstName: this.User.firstName,
         lastName: this.User.lastName,
         email: this.User.email,
@@ -77,19 +82,20 @@ export default {
       console.log(newUser)
       axios.post('http://localhost:8082/users/' + this.$route.params.userId, newUser)
         .then((response) => {
-          console.log(response.status)
+          console.log(response)
+          // window.location.href = "http://localhost:8080/#/home"
         })
         .catch((error) => {
           console.log(error)
         })
-      window.location.reload()
+
+      // window.location.reload()
     }
   },
   mounted () {
-    console.log('mounted')
     axios.get('http://localhost:8082/users/' + this.$route.params.userId)
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         this.User = response.data
       })
       .catch((error) => {

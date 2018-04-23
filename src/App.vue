@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#/home">
-          Directory
+          Contacts
         <!-- <img alt="Brand" src="..."> -->
       </a>
     </div>
